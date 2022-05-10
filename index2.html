@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var tab = [14, 22];
+        function swap(x, y) {
+            var tmp = x;
+            x = y;
+            y = tmp;
+        }
+        // fetch latest weather from city Brest in France
+        function fetchWeather() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'http://api.openweathermap.org/data/2.5/weather?q=Brest,fr&APPID=d8f9f8f8d8f9f9f9f9f9f9f9f9f9f9f9', true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var data = JSON.parse(xhr.responseText);
+                    var temp = data.main.temp;
+                    var temp_min = data.main.temp_min;
+                    var temp_max = data.main.temp_max;
+                    var humidity = data.main.humidity;
+                    var pressure = data.main.pressure;
+                    var wind = data.wind.speed;
+                    var icon = data.weather[0].icon;
+                    var icon_url = 'http://openweathermap.org/img/w/' + icon + '.png';
+                    var city = data.name;
+                    var country = data.sys.country;
+                    var desc = data.weather[0].description;
+                    var sunrise = data.sys.sunrise;
+                    var sunset = data.sys.sunset;
+                    var time = data.dt;
+                    var date = new Date(time * 1000);
+                    var day = date.getDate();
+                    var month = date.getMonth() + 1;
+                    var year = date.getFullYear();
+                    var hour = date.getHours();
+                    var min = date.getMinutes();
+                    var sec = date.getSeconds();
+                    var date_str = day + '/' + month + '/' + year + ' ' + hour + ':' + min + ':' + sec;
+                    var weather_str = '<div class="weather">' + '<div class="city">' + city + '</div>' + '<div class="country">' + country + '</div>' + '<div class="desc">' + desc + '</div>' + '<div class="temp">' + temp + '</div>' + '<div class="temp_min">' + temp_min + '</div>' + '<div class="temp_max">' + temp_max + '</div>' + '<div class="humidity">' + humidity + '</div>' + '<div class="pressure">' + pressure + '</div>' + '<div class="wind">' + wind + '</div>' + '<div class="icon"><img src="' + icon_url + '" alt=""></div>' + '<div class="date">' + date_str + '</div>' + '<div class="sunrise">' + sunrise + '</div>' + '<div class="sunset">' + sunset + '</div>' + '</div>';
+                    document.getElementById('weather').innerHTML = weather_str;
+                }
+            }
+            xhr.send();
+        }
+        // fetch latest news from BBC
+        function fetchNews() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'http://feeds.bbci.co.uk/news/rss.xml', true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var data = xhr.responseText;
+                    var parser = new DOMParser();
+                    var xmlDoc = parser.parseFromString(data, "text/xml");
+                    var items = xmlDoc.getElementsByTagName('item');
+                    var news_str = '<div class="news">';
+                    for (var i = 0; i < items.length; i++) {
+                        var title = items[i].getElementsByTagName('title')[0].childNodes[0].nodeValue;
+                        var link = items[i].getElementsByTagName('link')[0].childNodes[0].nodeValue;
+                        var pubDate = items[i].getElementsByTagName('pubDate')[0].childNodes[0].nodeValue;
+                        var description = items[i].getElementsByTagName('description')[0].childNodes[0].nodeValue;
+                        news_str += '<div class="item">' + '<div class="title">' + title + '</div>' + '<div class="link">' + link + '</div>' + '<div class="pubDate">' + pubDate + '</div>' + '<div class="description">' + description + '</div>' + '</div>';
+                    }
+                    news_str += '</div>';
+                    document.getElementById('news').innerHTML = news_str;
+                }
+            }
+            xhr.send();
+        }
+    </script>
+</head>
+
+<body> </body>
+
+</html>

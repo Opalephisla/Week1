@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <head>
+        <script>
+            const l = (arg) => console.log(arg);
+            var tab = [5, 66, 43, 656, 77];
+            // calculate how much times a coin lands on heads or tails for 1000 throws
+            const coin = () => {
+                let heads = 0;
+                let tails = 0;
+                for (let i = 0; i < 1000; i++) {
+                    let toss = Math.random();
+                    if (toss < 0.5) {
+                        heads++;
+                    } else {
+                        tails++;
+                    }
+                }
+                l(`heads: ${heads}`);
+                l(`tails: ${tails}`);
+            };
+            // return the maximum value of list
+            const max = (list) => {
+                let max = list[0];
+                for (let i = 1; i < list.length; i++) {
+                    if (list[i] > max) {
+                        max = list[i];
+                    }
+                }
+                return max;
+            };
+            // return the minimum value of list
+            const min = (list) => {
+                let min = list[0];
+                for (let i = 1; i < list.length; i++) {
+                    if (list[i] < min) {
+                        min = list[i];
+                    }
+                }
+                return min;
+            };
+            // return the average value of list
+            const average = (list) => {
+                let sum = 0;
+                for (let i = 0; i < list.length; i++) {
+                    sum += list[i];
+                }
+                return sum / list.length;
+            };
+            coin();
+            l(max(tab));
+            l(min(tab));
+            l(average(tab));
+            // generate some lorem ipsum in the browser
+            const lorem = () => {
+                let text = "";
+                let word = "";
+                let words = ["lorem", "ipsum", "dolor", "sit", "amet", "consectetur", "adipiscing", "elit", "curabitur", "vel", "hendrerit", "libero", "eleifend", "blandit", "nunc", "ornare", "odio", "ut", "orci", "gravida", "imperdiet", "nullam", "purus", "lacinia", "a", "pretium", "quis", "congue", "praesent", "sagittis", "laoreet", "auctor", "mauris", "non", "velit", "eros", "dictum", "proin", "accumsan", "sapien", "nec", "massa", "volutpat", "venenatis", "sed", "eu", "molestie", "lacus", "quisque", "porttitor", "ligula", "dui", "mollis", "tempus", "at", "magna", "vestibulum", "turpis", "ac", "diam", "tincidunt", "id", "condimentum", "enim", "sodales", "in", "hac", "habitasse", "platea", "dictumst", "aenean", "neque", "fusce", "augue", "leo", "eget", "semper", "mattis", "tortor", "scelerisque", "nulla", "interdum", "tellus", "malesuada", "rhoncus", "porta", "sem", "aliquet", "et", "nam", "suspendisse", "potenti", "vivamus", "luctus", "fringilla", "erat", "donec", "justo", "vehicula", "ultricies", "varius", "ante", "primis", "faucibus", "ultrices", "posuere", "cubilia", "curae", "etiam", "cursus", "aliquam", "quam", "dapibus", "nisl", "feugiat", "egestas", "class", "aptent", "taciti", "sociosqu", "ad", "litora", "torquent", "per", "conubia", "nostra", "inceptos", "himenaeos"];
+                let length = Math.floor(Math.random() * (100 - 10)) + 10;
+                for (let i = 0; i < length; i++) {
+                    word = words[Math.floor(Math.random() * words.length)];
+                    text += word + " ";
+                }
+                return text;
+            };
+
+            var tab = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+            // find position of a value in a list
+            const find = (list, value) => {
+                let position = -1;
+                for (let i = 0; i < list.length; i++) {
+                    if (list[i] == value) {
+                        position = i;
+                        break;
+                    }
+                }
+                return position;
+            };
+            l(find(tab, 5));
+            // effectuer une recherche dichotomique
+            const dicho = (list, value) => {
+                let position = -1;
+                let min = 0;
+                let max = list.length - 1;
+                let middle = Math.floor((min + max) / 2);
+                while (min <= max && position == -1) {
+                    if (list[middle] == value) {
+                        position = middle;
+                    } else if (list[middle] > value) {
+                        max = middle - 1;
+                    } else {
+                        min = middle + 1;
+                    }
+                    middle = Math.floor((min + max) / 2);
+                }
+                return position;
+            };
+            // scrobble through songs
+            const scrobble = (list, value) => {
+                let position = -1;
+                let min = 0;
+                let max = list.length - 1;
+                let middle = Math.floor((min + max) / 2);
+                while (min <= max && position == -1) {
+                    if (list[middle] == value) {
+                        position = middle;
+                    } else if (list[middle] > value) {
+                        max = middle - 1;
+                    } else {
+                        min = middle + 1;
+                    }
+                    middle = Math.floor((min + max) / 2);
+                }
+                if (position == -1) {
+                    return "not found";
+                } else {
+                    return position;
+                }
+            };
+            // vérifier que toutes les valeurs d'un tableau soient inférieurs à 40
+            const check = (list) => {
+                let result = true;
+                for (let i = 0; i < list.length; i++) {
+                    if (list[i] > 40) {
+                        result = false;
+                        break;
+                    }
+                }
+                return result;
+            };
+            l(check(tab));
+            // créer un tableau avec tous les mots ayant un e
+            var words = ['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present'];
+            const e = (list) => {
+                let result = [];
+                for (let i = 0; i < list.length; i++) {
+                    if (list[i].indexOf("e") != -1) {
+                        result.push(list[i]);
+                    }
+                }
+                return result;
+            };
+            // 
+            l(e(words));
+        </script>
+    </head>
+
+<body>
+
+</body>
+
+</html>

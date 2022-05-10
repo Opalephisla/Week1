@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <script>
+        var t1 = [
+            [4, 5],
+            [7, 8, 9],
+            [10, 11, 12]
+        ]
+        var t2 = [
+            [1, 2, 3],
+            [10, 12, 14],
+            [4, 1, 5]
+        ]
+        var t3 = []
+        for (i = 0; i < t1.length && i < t2.length; i++) {
+            for (j = 0; j < t1.length && j < t2.length; j++) {
+                if (t1[i].length < t2[i].length) {
+                    t1[i].push(0);
+                }
+                t3.push(t1[i][j] + t2[i][j])
+            }
+        }
+        console.log(t3)
+
+    </script>
+
+</head>
+
+<body>
+
+</body>
+
+</html>

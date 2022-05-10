@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <head>
+        <script>
+            const l = (arg) => console.log(arg); // l = console.log()  // l(arg) = console.log(arg)
+            // factorial array function
+            const f = (n) => {
+                let r = 1;
+                for (let i = 1; i <= n; i++) {
+                    r *= i;
+                }
+                return r;
+            }
+            l(f(5));
+            // factorial recursive function
+            const factorialRecursive = (n) => {
+                if (n === 1) {
+                    return 1;
+                }
+                return n * factorialRecursive(n - 1);
+            }
+            // fibonacci array function
+            const fibonacci = (n) => {
+                let result = [0, 1];
+                for (let i = 2; i <= n; i++) {
+                    result.push(result[i - 2] + result[i - 1]);
+                }
+                return result;
+            }
+            // fibonacci recursive function
+            const fibonacciRecursive = (n) => {
+                if (n === 0) {
+                    return 0;
+                }
+                if (n === 1) {
+                    return 1;
+                }
+                return fibonacciRecursive(n - 1) + fibonacciRecursive(n - 2);
+            }
+            // fibonacci recursive function
+            const fibonacciRecursive2 = (n) => {
+                if (n === 0) {
+                    return 0;
+                }
+                if (n === 1) {
+                    return 1;
+                }
+                let a = 0;
+                let b = 1;
+                let c = 0;
+                for (let i = 2; i <= n; i++) {
+                    c = a + b;
+                    a = b;
+                    b = c;
+                }
+                return c;
+            }
+            // fibonacci recursive function
+            const fibonacciRecursive3 = (n) => {
+                if (n === 0) {
+                    return 0;
+                }
+                if (n === 1) {
+                    return 1;
+                }
+                let a = 0;
+                let b = 1;
+                let c = 0;
+                for (let i = 2; i <= n; i++) {
+                    c = a + b;
+                    a = b;
+
+                    return c;
+                }
+            }
+
+        </script>
+    </head>
+
+</html>
